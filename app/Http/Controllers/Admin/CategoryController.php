@@ -34,11 +34,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $form_data = $request->all();
-        $form_data['slug'] = Category::generateSlug($form_data['name']);
-        $newCategory = Category::create($form_data);
-        // dd($form_data);
-        // dd($newPost);
-        return redirect()->route('admin.categories.show', $newCategory->slug);
+        $form_data["slug"] =  Project::generateSlug($form_data["name"]);
+        $new_Type = new Category();
+        $new_Type->fill($form_data);
+        $new_Type->save();
+        return redirect()->route("admin.categories.index");
     }
 
     /**

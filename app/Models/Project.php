@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Category;
 
 class Project extends Model
 {
@@ -19,5 +20,9 @@ class Project extends Model
             $count++;
         }
         return $slug;
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 }

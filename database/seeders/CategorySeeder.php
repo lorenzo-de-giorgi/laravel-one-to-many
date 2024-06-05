@@ -14,11 +14,11 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         $categories = ['front-end', 'database', 'back-end', 'fullstack'];
-        foreach ($categories as $category) {
-            $new_category = new Category();
-            $new_category->name = $category;
-            $new_category->slug = Category::generateSlug($category);
-            $new_category->save();
+        for($index=0; $index < count($categories); $index++){
+            $newCategory = new Category();
+            $newCategory->name = $categories[$index];
+            $newCategory->slug = Category::generateSlug($newCategory->name);
+            $newCategory->save();
         }
     }
 }
