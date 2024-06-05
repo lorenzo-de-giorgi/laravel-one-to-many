@@ -17,6 +17,14 @@
                 <div id="titleHelp" class="form-text text-white">Inserire minimo 3 caratteri e massimo 200</div>
             </div>
             <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
+                    name="image" value="{{ old('image') }}">
+                @error('image')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
                 <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">
                 {{ old('description') }}
@@ -26,11 +34,15 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
-                    name="image" value="{{ old('image') }}">
-                @error('image')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                <label for="category_id" class="form-label">Select Category</label>
+                <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                    <option value="">Select Category</option>
+                  @foreach ($categories as $category)
+                      <option value="{{$category->id}}" {{ $category->id == old('category_id') ? 'selected' : '' }}>{{$category->name}}</option>
+                  @endforeach
+                </select>
+                @error('category_id')
+                <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">

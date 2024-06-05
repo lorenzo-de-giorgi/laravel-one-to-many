@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use APP\Http\Controllers\Controller;
 
 use App\Models\Project;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProjectRequest;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $categories = Category::all();
+        return view('admin.projects.create', compact('categories'));
     }
 
     /**
